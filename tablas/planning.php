@@ -1,5 +1,4 @@
-             <div class="selec_filter">
-               <form action="crud.php" method="POST"  class="form">
+             <form action="crud.php" method="POST"  class="form">
                    <select name="filtro" id="filtro" class="form-filter" >
                        <option value="id_planing">ID</option>
                        <option value="Fecha_agendada">Fecha Agendada</option>
@@ -20,7 +19,7 @@
                    <lebel for="fechaa" > A : </lebel>
                    <input type="date" name="fechaa" class="form-filter"  >
                    <input type="submit"  name="btn" value="Buscar" class="form-filter" >  </form>
-                   <a href="archivos/pdf_planning.php" class="descargapdf" target="_blank"><i class='fas fa-x2 fa-file-download'></i>PDF</a>
+                   <a href="archivos/pdf_planning.php" class="descarga_doc" target="_blank"><i class='fas fa-x2 fa-file-download'></i>PDF</a>
                    <?php
                               if(empty($_POST['valor'])){
                                echo "<a href='archivos/planning_cvs.php' class='descarga_doc'><i class='fas fa-x2 fa-file-download'></i> </a>" ;

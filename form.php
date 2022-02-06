@@ -65,7 +65,6 @@ if(isset($_POST['ltrabajo2'])){
           echo  '<option value="Entrada_Tranferencias">Entrada Tranferencias</option>
           <option value="recibo">Recibo</option>
           <option value="no_procesable">No Procesable</option>
-          <option value="f_a_estatus">Actualizacion de Estatus</option>
           ';
             }
             if($_SESSION['ltrabajo'] == "XD" || $_SESSION['ltrabajo'] == "FC"){
@@ -89,7 +88,7 @@ if(isset($_POST['ltrabajo2'])){
 
            require_once('formularios/f_e_svcs.php'); 
 
-        }else if(isset($_POST['Ent_sal']) && $_SESSION['ltrabajo'] =="SVCS" && $_POST['Ent_sal'] == "Salida"){
+        }if(isset($_POST['Ent_sal']) && $_SESSION['ltrabajo'] =="SVCS" && $_POST['Ent_sal'] == "Salida"){
         
             require_once('formularios/f_s_svcs.php'); 
         
@@ -97,13 +96,9 @@ if(isset($_POST['ltrabajo2'])){
         
             require_once('formularios/f_pa_fc.php'); 
         
-        }else if(isset($_POST['Ent_sal']) && $_SESSION['ltrabajo'] == "FC" && $_POST['Ent_sal'] == "f_a_estatus"){
-        
-            require_once('formularios/f_a_estatus.php'); 
-            
         }else if(isset($_POST['Ent_sal']) && $_SESSION['ltrabajo'] == "FC" && $_POST['Ent_sal'] == "no_procesable"){
         
-            require_once('formularios/f_o_fc_.php');
+            require_once('formularios/f_o_fc_.php'); 
 
         }else if(isset($_POST['Ent_sal']) && $_SESSION['ltrabajo'] == "FC" && $_POST['Ent_sal'] == "recibo"){
         
@@ -141,8 +136,7 @@ if(isset($_POST['ltrabajo2'])){
         }else if(!isset($_POST['Ent_sal'])){
        echo   '<center><h3 class="Seleccion" style="color:#042c6c; font-size:70px; text-shadow: 2px 2px 5px #ffffff;">Bienvenido '.$_SESSION['nombre_usuario'].'</h3></center>
        <center><h3 class="Seleccion" style="color:#042c6c; font-size:70px; text-shadow: 2px 2px 5px #ffffff;">Seleciona un Formulario para '.$_SESSION['ltrabajo'].'</h3></center>';
-       
-   
+
           } ?>
     </div>
     <script src="interfas2.js">

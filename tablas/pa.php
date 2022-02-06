@@ -1,18 +1,20 @@
-                <div class="selec_filter">
-                    <form action="crud.php" method="POST"  class="form">
+<form action="crud.php" method="POST"  class="form">
                    <select name="filtro" id="filtro" class="form-filter" >
-                       <option value="id_prealert ">ID</option>
-                       <option value="responsable">Fulfillment</option>
-                       <option value="lugaDeTrabajo">Pallets Recibidos</option>
-                       <option value="cdt">Pallets en buen estado</option>
-                       <option value="id_de_envio">Pallets en mal estado</option>
-                       <option value="Codificación">Gaylords Totales Recibidos</option>
-                       <option value="Metodo">Gaylords en buen estado</option>
-                       <option value="Facility">Gaylords en mal estado</option>
-                       <option value="Transporte">Cajas</option>
-                       <option value="Trasportista">Costales</option>
-                       <option value="Placas">Centro de trabajo origen</option>
-                       <option value="Sello">Cross Dock origen</option>
+                       <option value="ID_E_fc">ID</option>
+                       <option value="Fulfillment">Fulfillment</option>
+                       <option value="Pallets_Totales_Recibidos">Pallets Recibidos</option>
+                       <option value="Pallets_en_buen_estado">Pallets en buen estado</option>
+                       <option value="Pallets_en_mal_estado">Pallets en mal estado</option>
+                       <option value="Gaylords_Totales_Recibidos">Gaylords Totales Recibidos</option>
+                       <option value="Gaylords_en_buen_estado">Gaylords en buen estado</option>
+                       <option value="Gaylords_en_mal_estado">Gaylords en mal estado</option>
+                       <option value="Cajas">Cajas</option>
+                       <option value="Costales">Costales</option>
+                       <option value="Centro_de_trabajo_origen">Centro de trabajo origen</option>
+                       <option value="Cross_Dock_origen">Cross Dock origen</option>
+                       <option value="Service_Center_Origen">Service Center Origen</option>
+                       <option value="Responsable_del_registro">Responsable del registro</option>
+                       <option value="Responsable">Responsable</option>
                    </select>
                    <input type="text" name="valor" class="form-filter"  >
                    <lebel for="fechad" >De : </lebel>
@@ -22,39 +24,41 @@
                    <input type="submit"  name="btn" value="Buscar" class="form-filter" ></form>
                    <?php
                    if(empty($_POST['valor'])){
-                    echo "<a href='archivos/cvs_pa.php' class='descarga_doc'><i class='fas fa-x2 fa-file-download'></i></a>" ;
+                    echo "<a href='archivos/cvs_e_fc.php' class='descarga_doc'><i class='fas fa-x2 fa-file-download'></i></a>" ;
                    }else if(empty($_POST['fechaa']) && empty($_POST['fechad'])){
                     $filtro=$_POST['filtro'];
                     $valor=$_POST['valor'];
-                       echo '<a href="archivos/cvs_pa.php?filtro='.$filtro.'&valor='.$valor.'" class="descarga_doc"><i class="fas fa-x2 fa-file-download"></i></a>';
+                       echo '<a href="archivos/cvs_e_fc.php?filtro='.$filtro.'&valor='.$valor.'" class="descarga_doc"><i class="fas fa-x2 fa-file-download"></i></a>';
                       }else if(empty($_POST['fechaa'])){
                         $filtro=$_POST['filtro'];
                         $valor=$_POST['valor'];
                         $fecha1=$_POST['fechad'];
-                           echo '<a href="archivos/cvs_pa.php?filtro='.$filtro.'&valor='.$valor.'&fechad='.$fecha1.'" class="descarga_doc"><i class="fas fa-x2 fa-file-download"></i></a>';
+                           echo '<a href="archivos/cvs_e_fc.php?filtro='.$filtro.'&valor='.$valor.'&fechad='.$fecha1.'" class="descarga_doc"><i class="fas fa-x2 fa-file-download"></i></a>';
                        }else {
                     $filtro=$_POST['filtro'];
                     $valor=$_POST['valor'];
                     $fecha1=$_POST['fechad'];
                     $fecha2=$_POST['fechaa'];
-                       echo '<a href="archivos/cvs_pa.php.php?filtro='.$filtro.'&valor='.$valor.'&fechad='.$fecha1.'&fechaa='.$fecha2.'" class="descarga_doc"><i class="fas fa-x2 fa-file-download"></i></a>';
+                       echo '<a href="archivos/cvs_e_fc.php?filtro='.$filtro.'&valor='.$valor.'&fechad='.$fecha1.'&fechaa='.$fecha2.'" class="descarga_doc"><i class="fas fa-x2 fa-file-download"></i></a>';
                    }
                   ?></div>
                 <table >
                  <tr>
                 <th>ID </th>
+                <th>Fulfillment</th>
+                <th>Pallets Recibidos</th>
+                <th>Pallets en buen estado</th>
+                <th>Pallets en mal estado</th>
+                <th>Gaylords Recibidos</th>
+                <th>Gaylords en buen estado</th>
+                <th>Gaylords en mal estado</th>
+                <th>Cajas</th>
+                <th>Costales</th>
+                <th>Centro de trabajo origen</th>
+                <th>Cross Dock origen</th>
+                <th>Service Center Origen</th>
                 <th>Responsable</th>
-                <th>Lugar de Trabajo</th>
-                <th>Centro de Trabajo</th>
-                <th>ID Envio</th>
-                <th>Codificacion</th>
-                <th>Metodo</th>
-                <th>Facility</th>
-                <th>Transporte</th>
-                <th>Trasportista</th>
-                <th>Placas</th>
-                <th>Sello</th>
-                <th>Facha</th>
+                <th>Fecha</th>
                 </tr>
                 <?php               
                 
@@ -73,33 +77,33 @@
 
                     $offset = (($pag-1)*$limit);
                     
-                $query="SELECT * FROM `prealert`";
+                $query="SELECT ID_E_fc FROM `entrada_fc`";
                 $cuentQuery=mysqli_query($enlace,$query);
                 $totalR=mysqli_num_rows($cuentQuery);
               $totalP=round(($totalR/$limit),2)+1;
                 
 
                    if(empty($_POST['valor'])){
-                $sql2="SELECT * FROM `prealert` LIMIT $offset, $limit" ;
+                $sql2="SELECT * FROM `entrada_fc` LIMIT $offset, $limit" ;
               $resultado=mysqli_query($enlace,$sql2);
                     }else if(empty($_POST['fechaa']) && empty($_POST['fechad'])  ){
                 $filtro=$_POST['filtro'];
                 $valor=$_POST['valor'];
-                  $sql2="SELECT * FROM `prealert` WHERE $filtro LIKE '%$valor%' LIMIT $offset, $limit ";
+                  $sql2="SELECT * FROM `entrada_fc` WHERE $filtro LIKE '%$valor%' LIMIT $offset, $limit ";
               $resultado=mysqli_query($enlace,$sql2);
               
                     }else if(empty($_POST['fechaa']) ){
                 $filtro=$_POST['filtro'];
                 $valor=$_POST['valor'];
                 $fecha1=$_POST['fechad'];
-                  $sql2="SELECT * FROM `prealert` WHERE $filtro LIKE '%$valor%' AND dia = '$fecha1' LIMIT $offset, $limit ";
+                  $sql2="SELECT * FROM `entrada_fc` WHERE $filtro LIKE '%$valor%' AND Fecha_Creación = '$fecha1' LIMIT $offset, $limit ";
               $resultado=mysqli_query($enlace,$sql2);
                     }else{
                 $filtro=$_POST['filtro'];
                 $valor=$_POST['valor'];
                 $fecha1=$_POST['fechad'];
                 $fecha2=$_POST['fechaa'];
-                  $sql2="SELECT * FROM `prealert` WHERE $filtro LIKE '%$valor%' AND dia BETWEEN '$fecha1' AND '$fecha2' LIMIT $offset, $limit ";
+                  $sql2="SELECT * FROM `entrada_fc` WHERE $filtro LIKE '%$valor%' AND Fecha_Creación BETWEEN '$fecha1' AND '$fecha2' LIMIT $offset, $limit ";
               $resultado=mysqli_query($enlace,$sql2);
             
                        }
@@ -108,19 +112,21 @@
               
                   while($mostrar=mysqli_fetch_array($resultado)){
                 
-                      echo "<tr><td>".$mostrar['id_prealert']."</td>";
-                      echo "<td>".$mostrar['responsable']."</td>";
-                      echo "<td>".$mostrar['lugaDeTrabajo']."</td>";
-                      echo "<td>".$mostrar['cdt']."</td>";
-                      echo "<td>".$mostrar['id_de_envio']."</td>";
-                      echo "<td>".$mostrar['Codificación']."</td>";
-                      echo "<td>".$mostrar['Metodo']."</td>";
-                      echo "<td>".$mostrar['Facility']."</td>";
-                      echo "<td>".$mostrar['Transporte']."</td>";
-                      echo "<td>".$mostrar['Trasportista']."</td>";
-                      echo "<td>".$mostrar['Placas']."</td>";
-                      echo "<td>".$mostrar['Sello']."</td>";
-                      echo "<td>".$mostrar['fecha']."</td></tr>";
+                      echo "<tr><td>".$mostrar['ID_E_fc']."</td>";
+                      echo "<td>".$mostrar['Fulfillment']."</td>";
+                      echo "<td>".$mostrar['Pallets_Totales_Recibidos']."</td>";
+                      echo "<td>".$mostrar['Pallets_en_buen_estado']."</td>";
+                      echo "<td>".$mostrar['Pallets_en_mal_estado']."</td>";
+                      echo "<td>".$mostrar['Gaylords_Totales_Recibidos']."</td>";
+                      echo "<td>".$mostrar['Gaylords_en_buen_estado']."</td>";
+                      echo "<td>".$mostrar['Gaylords_en_mal_estado']."</td>";
+                      echo "<td>".$mostrar['Cajas']."</td>";
+                      echo "<td>".$mostrar['Costales']."</td>";
+                      echo "<td>".$mostrar['Centro_de_trabajo_origen']."</td>";
+                      echo "<td>".$mostrar['Cross_Dock_origen']."</td>";
+                      echo "<td>".$mostrar['Service_Center_Origen']."</td>";
+                      echo "<td>".$mostrar['Responsable']."</td>";
+                      echo "<td>".$mostrar['Fecha_Hora']."</td></tr>";
                            }
                 
             ?>

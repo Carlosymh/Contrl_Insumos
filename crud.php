@@ -67,7 +67,7 @@ if(isset($_POST['accion'])){
     <div class="selec_filter">
      <form action="crud.php" method="POST"  class="form">
     <select name="accion" id="accion" class="form-filter" >
-    <?php if($_SESSION['cargo'] == 2 || $_SESSION['cargo'] == 3){
+    <?php if($_SESSION['cargo'] == 2){
             echo '<option value="SELECT">Ver</option>';
         }else if($_SESSION['cargo'] == 1 ){
             echo '<option value="SELECT">Ver</option>
@@ -117,7 +117,7 @@ if(isset($_POST['accion'])){
     
   
     
-    </div>
+    </form>
     <?php
   
 if(isset($_SESSION['accion'])){

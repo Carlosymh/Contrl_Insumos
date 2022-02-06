@@ -1,6 +1,5 @@
-                <div class="selec_filter">
-                    <form action="crud.php" method="POST"  class="form">
-                    <select name="filtro" id="filtro" class="form-filter" >
+<form action="crud.php" method="POST"  class="form">
+                   <select name="filtro" id="filtro" class="form-filter" >
                        <option value="id_orden ">ID</option>
                        <option value="usuario_wms">Usuario WMS</option>
                        <option value="paquetera">Paquetera</option>
@@ -8,15 +7,12 @@
                        <option value="pallet">Pallet</option>
                        <option value="tipo">Tipo</option>
                        <option value="fulfillment_origen">Fullfillment Origen</option>
-                       <option value="region">region</option>
                        <option value="estatus">Estatus</option>
                        <option value="service_center">Service Center</option>
                        <option value="ticket">Ticket</option>
-                       <option value="fecha_ticket">fecha ticket</option>
-                       <option value="estatus_orden">estatus_orden</option>
-                       <option value="semana">semana</option>
-                       <option value="ticket">mes</option>
-                       <option value="responsable">responsable</option>
+                       <option value="fecha_ticket">Fecha</option>
+                       <option value="responsable">Responsable</option>
+                       <option value="fecha_hora">Fecha</option>
                    </select>
                    <input type="text" name="valor" class="form-filter"  >
                    <lebel for="fechad" >De : </lebel>
@@ -53,14 +49,10 @@
                 <th>Pallet</th>
                 <th>Tipo</th>
                 <th>Fulfillment Origen</th>
-                <th>region</th>
                 <th>Estatus</th>
                 <th>Servece Center</th>
                 <th>Ticket</th>
                 <th>Fecha Tiket</th>
-                <th>Estatus orden</th>
-                <th>semana</th>
-                <th>mes</th>
                 <th>Responsable</th>
                 <th>Fecha</th>
                 </tr>
@@ -100,14 +92,14 @@
                 $filtro=$_POST['filtro'];
                 $valor=$_POST['valor'];
                 $fecha1=$_POST['fechad'];
-                  $sql2="SELECT * FROM `ordenes_no_procesables` WHERE $filtro LIKE '%$valor%' AND fecha = '$fecha1' LIMIT $offset, $limit ";
+                  $sql2="SELECT * FROM `ordenes_no_procesables` WHERE $filtro LIKE '%$valor%' AND Fecha_Creación = '$fecha1' LIMIT $offset, $limit ";
               $resultado=mysqli_query($enlace,$sql2);
                     }else{
                 $filtro=$_POST['filtro'];
                 $valor=$_POST['valor'];
                 $fecha1=$_POST['fechad'];
                 $fecha2=$_POST['fechaa'];
-                  $sql2="SELECT * FROM `ordenes_no_procesables` WHERE $filtro LIKE '%$valor%' AND fecha BETWEEN '$fecha1' AND '$fecha2' LIMIT $offset, $limit ";
+                  $sql2="SELECT * FROM `ordenes_no_procesables` WHERE $filtro LIKE '%$valor%' AND Fecha_Creación BETWEEN '$fecha1' AND '$fecha2' LIMIT $offset, $limit ";
               $resultado=mysqli_query($enlace,$sql2);
             
                        }
@@ -123,14 +115,10 @@
                       echo "<td>".$mostrar['pallet']."</td>";
                       echo "<td>".$mostrar['tipo']."</td>";
                       echo "<td>".$mostrar['fulfillment_origen']."</td>";
-                      echo "<td>".$mostrar['region']."</td>";
                       echo "<td>".$mostrar['estatus']."</td>";
                       echo "<td>".$mostrar['service_center']."</td>";
                       echo "<td>".$mostrar['ticket']."</td>";
                       echo "<td>".$mostrar['fecha_ticket']."</td>";
-                      echo "<td>".$mostrar['estatus_orden']."</td>";
-                      echo "<td>".$mostrar['semana']."</td>";
-                      echo "<td>".$mostrar['mes']."</td>";
                       echo "<td>".$mostrar['responsable']."</td>";
                       echo "<td>".$mostrar['fecha_hora']."</td></tr>";
                            }

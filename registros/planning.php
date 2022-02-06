@@ -22,12 +22,10 @@ if(isset($_SESSION['usuario'])){
     }
     if($_SESSION['cargo'] != 1){
     if($_SESSION['ltrabajo'] != "XD"){
-    if($_SESSION['ltrabajo'] != "FC"){
         header("Location:../form.php");
         die();
     }
    }
-}
 }
 
 

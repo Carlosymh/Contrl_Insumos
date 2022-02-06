@@ -1,5 +1,4 @@
-                <div class="selec_filter">
-                 <form action="crud.php" method="POST"  class="form">
+<form action="crud.php" method="POST"  class="form">
                    <select name="filtro" id="filtro" class="form-filter" >
                        <option value="id_recibo">ID</option>
                        <option value="Fulfillment">Fulfillment</option>

@@ -14,7 +14,7 @@ date_default_timezone_set('America/Mexico_City');
     $Responsable_Registro=$_SESSION['nombre_usuario'];
     $date = date('Y-m-d H:i:s', time());
 
-$sql="INSERT INTO salida_xd (Centro_de_trabajo_donde_te_encuentras, Tarimas_Enviadas, Gaylord_Enviados, cajas, costales, Destino_de_la_carga, service_center, Fulfillment, Responsable, Fecha_Creación, Fecha_Hora) VALUES ('$cdtdte','$Tarimas_Enviadas','$Gaylord_Enviados','$cajas','$costales','$Destino_de_la_carga','$Service_Center','$Fulfillment','$Responsable_Registro','$date','$date')";
+$sql="INSERT INTO salida_xd (Centro_de_trabajo_donde_te_encuentras, Tarimas_Enviadas, Gaylord_Enviados, cajas, costales, Destino_de_la_carga, service_center, Fulfillment, Responsable, Fecha_Creación) VALUES ('$cdtdte','$Tarimas_Enviadas','$Gaylord_Enviados','$cajas','$costales','$Destino_de_la_carga','$Service_Center','$Fulfillment','$Responsable_Registro','$date')";
 $resultado=mysqli_query($enlace,$sql);
 header("location:../form.php");
 ?>
